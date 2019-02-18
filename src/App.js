@@ -53,37 +53,18 @@ const app = props => {
   // render() { // this is the most important thing that each React component needs to do...but only required for classes extending 'Component'
 
   // don't add parentheses after the call to the handler - it's to be registered not immediately invoked!
-  return ( <
-    div className = "App" >
-    <
-    h1 > Hi < /h1> <
-    div >
-    <
-    button onClick = {
-      switchTitleHandler
-    } > Switch Title < /button> <
-    /div> <
-    NavigationCard title = {
-      cardsState.cards[0].title
-    }
-    href = {
-      cardsState.cards[0].link
-    }
-    /> <
-    NavigationCard title = {
-      cardsState.cards[1].title
-    }
-    href = {
-      cardsState.cards[1].link
-    } > < strong > something in between < /strong></NavigationCard >
-    <
-    NavigationCard title = {
-      cardsState.cards[2].title
-    }
-    href = {
-      cardsState.cards[2].link
-    } > < /NavigationCard> <
-    /div>
+  return (
+    <div className = "App">
+      <h1>Hi</h1>
+      <div>
+        <button onClick = { switchTitleHandler }> Switch Title </button>
+      </div>
+      <NavigationCard title = { cardsState.cards[0].title } href = { cardsState.cards[0].link } />
+      <NavigationCard title = { cardsState.cards[1].title } href = { cardsState.cards[1].link } >
+        <strong > something in between </strong>
+      </NavigationCard >
+      <NavigationCard title = { cardsState.cards[2].title } href = { cardsState.cards[2].link } > </NavigationCard>
+    </div>
   )
   // : JSX provides a nicer coding approach
 
