@@ -15,6 +15,7 @@ import NavigationCard from './NavigationCard/NavigationCard';
 const app = props => {
 
   // use state returns an array with EXACTLY 2 elements: 1. the current state, 2. a function to amend state
+  // With React hooks, tbere is no AUTOMATIC merge of state (as there is with OOTB react).
   const [cardsState, setCardsState] = useState({
     cards: [{
         title: "See What's Been Hooked!",
@@ -27,8 +28,9 @@ const app = props => {
       {
         title: "another card title",
         link: "/another"
-      },
-    ]
+      }
+    ],
+    showCards: false
   });
 
   const // prefer es6 arrow functions here as it avoids problems with this keyword
@@ -50,20 +52,59 @@ const app = props => {
       })
     }
 
+  const titleChangedHandler = (event) => {
+    setCardsState({
+      cards: [{
+          title: "see what's been cooked",
+          link: "/hooked"
+        },
+        {
+          title: event.target.value,
+          link: "/upload"
+        },
+        {
+          title: "event.target.value",
+          link: "/another"
+        }
+      ]
+    })
+  }
+
+  const toggleNavigationCardsHandler = () => {
+    const doesShow = cardsState.showCards;
+    setCardsState({showCards: !doesShow });
+  }
+
   // render() { // this is the most important thing that each React component needs to do...but only required for classes extending 'Component'
 
   // don't add parentheses after the call to the handler - it's to be registered not immediately invoked!
   return (
     <div className = "App">
-      <h1>Hi</h1>
+      <h1> Hi </h1>
       <div>
-        <button onClick = { switchTitleHandler }> Switch Title </button>
+        <button onClick = { toggleNavigationCardsHandler }> Switch Title </button>
       </div>
-      <NavigationCard title = { cardsState.cards[0].title } href = { cardsState.cards[0].link } />
-      <NavigationCard title = { cardsState.cards[1].title } href = { cardsState.cards[1].link } >
-        <strong > something in between </strong>
-      </NavigationCard >
-      <NavigationCard title = { cardsState.cards[2].title } href = { cardsState.cards[2].link } > </NavigationCard>
+      {
+        cardsState.showCards ?
+          <div>
+            <NavigationCard
+              title = { cardsState.cards[0].title }
+              link = { cardsState.cards[0].link }
+              changed = { titleChangedHandler }/>
+            <NavigationCard
+              title = { cardsState.cards[1].title }
+              link = { cardsState.cards[1].link }
+              changed = { titleChangedHandler }>
+              <strong> something in between </strong>
+            </NavigationCard>
+            <NavigationCard
+              title = { cardsState.cards[2].title }
+              link = { cardsState.cards[2].link }
+              changed = { titleChangedHandler }>
+            </NavigationCard>
+          </div>
+        : null
+      }
     </div>
   )
   // : JSX provides a nicer coding approach

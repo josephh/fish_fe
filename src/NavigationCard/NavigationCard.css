@@ -1,7 +1,0 @@
-/* Global styles - not scoped to a component! */
-div.navigation-card {
-    text-align: center;
-    border: groove;
-    display: inline-block;
-    padding: 20px;
-  }
