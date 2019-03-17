@@ -60,7 +60,7 @@ class App extends Component {
           link: "/upload"
         },
         {
-          title: "event.target.value",
+          title: event.target.value,
           link: "/another"
         }
       ]
@@ -72,31 +72,37 @@ class App extends Component {
     this.setState({showCards: !doesShow});
   }
 
-  render = () =>  { return (
+  render = () =>  {
+    let cards = null;
+
+    if (this.state.showCards) {
+        cards =
+          <div>
+            <NavigationCard
+              title = {this.state.cards[0].title}
+              link = {this.state.cards[0].link}
+              changed = {this.titleChangedHandler}/>
+            <NavigationCard
+              title = {this.state.cards[1].title}
+              link = {this.state.cards[1].link}
+              changed = {this.titleChangedHandler}>
+              <strong> something in between </strong>
+            </NavigationCard>
+            <NavigationCard
+              title = {this.state.cards[2].title}
+              link = {this.state.cards[2].link}
+              changed = {this.titleChangedHandler}>
+            </NavigationCard>
+          </div>
+    }
+
+    return (
     <div className = "App">
       <h1> Hi </h1>
       <div>
-        <button onClick = { this.toggleNavigationCardsHandler }> Switch Title </button>
+        <button onClick = { this.toggleNavigationCardsHandler }> Show or hide cards </button>
       </div>
-      {this.state.showCards ?
-        <div>
-          <NavigationCard
-            title = {this.state.cards[0].title}
-            link = {this.state.cards[0].link}
-            changed = {this.titleChangedHandler}/>
-          <NavigationCard
-            title = {this.state.cards[1].title}
-            link = {this.state.cards[1].link}
-            changed = {this.titleChangedHandler}>
-            <strong> something in between </strong>
-          </NavigationCard>
-          <NavigationCard
-            title = {this.state.cards[2].title}
-            link = {this.state.cards[2].link}
-            changed = {this.titleChangedHandler}>
-          </NavigationCard>
-        </div>
-      : null}
+      {cards}
     </div>
   )}
   // : JSX provides a nicer coding approach
