@@ -3,6 +3,11 @@
   text-align: center;
 }
 
+.cards {
+  display: flex;
+  flex-direction: row;
+}
+
 button {
     font-size: 30px;
     font-style: italic;
