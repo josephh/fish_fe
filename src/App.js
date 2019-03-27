@@ -8,7 +8,8 @@ it.
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import NavigationCard from './NavigationCard/NavigationCard';
+import NavigationCard from './components/NavigationCard/NavigationCard';
+import UploadCatch from './containers/UploadCatch/UploadCatch';
 
 class App extends Component {
 
@@ -86,7 +87,7 @@ class App extends Component {
     return (
     <div className = "App">
       <h1> Hi </h1>
-      {cards}
+      <UploadCatch />
     </div>
   )}
   // : JSX provides a nicer coding approach
