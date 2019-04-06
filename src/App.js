@@ -8,7 +8,8 @@ it.
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import NavigationCard from './NavigationCard/NavigationCard';
+import NavigationCard from './components/NavigationCard/NavigationCard';
+import UploadCatch from './containers/UploadCatch/UploadCatch';
 
 class App extends Component {
 
@@ -17,84 +18,74 @@ class App extends Component {
   state = {
     cards: [{
         title: "See What's Been Hooked!",
-        link: "/hooked"
+        link: "/hooked",
+        id: "sdfjdspof09s8"
       },
       {
         title: "Upload a Catch",
-        link: "/upload"
+        link: "/upload",
+        id: "987987234mkj"
       },
       {
         title: "another card title",
-        link: "/another"
+        link: "/another",
+        id: "09809123hwgfhsdgv"
       }
-    ],
-    showCards: false
+    ]
   };
 
-  switchTitleHandler = () => {
-      this.setState({
-        cards: [{
-            title: "See What's Been cooked!",
-            link: "/hooked"
-          },
-          {
-            title: "Upload a Catch",
-            link: "/upload"
-          },
-          {
-            title: "another card bitle",
-            link: "/another"
-          },
-        ]
-      })
+  titleChangedHandler = (event, id) => {
+
+    const cardIndex = this.state.cards.findIndex(c => {
+      return c.id === id;
+    });
+
+    // we don't want to mutate the object (javascript passes by ref) so we
+    // use the spread operator to copy into a new object.  Could achieve same thing
+    // with Object.assign({}, this.state.cards[cardIndex])
+    const card = {
+      ...this.state.cards[cardIndex]
     }
 
-  titleChangedHandler = (event) => {
+    card.title = event.target.value
+
+    // once we have an updated card, add it back into a COPY of the state
+    const cards = [...this.state.cards]
+    cards[cardIndex] = card
+
     this.setState({
-      cards: [{
-          title: "see what's been cooked",
-          link: "/hooked"
-        },
-        {
-          title: event.target.value,
-          link: "/upload"
-        },
-        {
-          title: event.target.value,
-          link: "/another"
-        }
-      ]
+      cards: cards
     })
   }
 
-  toggleNavigationCardsHandler = () => {
-    const doesShow = this.state.showCards;
-    this.setState({showCards: !doesShow});
+  deleteCardHandler = (cardsIndex) => {
+    const cards = this.state.cards
+    cards.splice(cardsIndex, 1) // remove from the object reference
+    this.setState({cards: cards})
   }
 
-  render = () =>  {
-    let cards = null;
+  linkClickedHandler = () => {
+    alert('link Clicked!')
+  }
 
-    if (this.state.showCards) {
-        cards =
-          <div>
-            <NavigationCard
-              title = {this.state.cards[0].title}
-              link = {this.state.cards[0].link}
-              changed = {this.titleChangedHandler}/>
-            <NavigationCard
-              title = {this.state.cards[1].title}
-              link = {this.state.cards[1].link}
-              changed = {this.titleChangedHandler}>
-              <strong> something in between </strong>
-            </NavigationCard>
-            <NavigationCard
-              title = {this.state.cards[2].title}
-              link = {this.state.cards[2].link}
-              changed = {this.titleChangedHandler}>
-            </NavigationCard>
-          </div>
-    }
+  // render executes every time state changes
+  render = () =>  {
+    var cards = <div className='cards'>
+          {  // Array.map() makes it easy to to 'build' a valid jsx component array
+          this.state.cards.map((card, index) => {
+            console.log('index when adding cards? ' + index)
+            return <NavigationCard
+              click = {() => this.deleteCardHandler(index)} // could also be bind.this, index
+              title = {card.title}
+              link = {card.link}
+              changed = {(event) => this.titleChangedHandler(event, card.id)}
+              linkClick = {() => this.linkClickedHandler()}
+              key= {card.id} /> //
+          })}
+        </div>
+
+    return (
+      <UploadCatch />
 
     return (
     <div className = "App">
