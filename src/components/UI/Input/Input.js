@@ -6,13 +6,20 @@ import classes from './Input.css';
 const input = ( props ) => {
     let inputElement = null;
 
+    // get a ref to the existing classes from the css into a new array
+    const inputClasses = [classes.InputElement]
+    if(props.invalid){
+      console.log('is invalid NOW ADD STYLING')
+        inputClasses.push(classes.Invalid)
+    }
+
     // rather than just having an <input>, we make it more generic by testing
     //  what kind of html element we are dealing with
     // (the switch statement allows us to avoid having to provide a wrapper for every html element type)
     switch ( props.elementType ) {
         case ( 'input' ):
             inputElement = <input
-                className={classes.InputElement}
+                className={inputClasses.join(' ')}
                 // distribute all the config items (must use actual html property names)
                 {...props.elementConfig}
                 value={props.value}
@@ -20,7 +27,7 @@ const input = ( props ) => {
             break;
         case ( 'textarea' ):
             inputElement = <textarea
-                className={classes.InputElement}
+                className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;
@@ -28,7 +35,7 @@ const input = ( props ) => {
         case ( 'select' ):
             inputElement = (
                 <select
-                    className={classes.InputElement}
+                    className={inputClasses.join(' ')}
                     value={props.value}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
@@ -43,7 +50,7 @@ const input = ( props ) => {
             inputElement = (
                 <input
                     type="radio"
-                    className={classes.InputElement}
+                    className={inputClasses.join(' ')}
                     {...props.elementConfig}
                     value={props.value}
                     onChange={props.changed}
@@ -53,7 +60,7 @@ const input = ( props ) => {
             break;
         default:
             inputElement = <input
-                className={classes.InputElement}
+                className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />;

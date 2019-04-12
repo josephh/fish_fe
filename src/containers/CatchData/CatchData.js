@@ -8,7 +8,7 @@ import classes from './CatchData.css';
 import axios from '../../axios-catches';
 import Input from '../../components/UI/Input/Input';
 
-class ContactData extends Component {
+class CatchData extends Component {
   state = {
     catchForm: {
       species: {
@@ -52,7 +52,8 @@ class ContactData extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          isNumeric: true
         },
         valid: false,
         touched: false
@@ -65,7 +66,8 @@ class ContactData extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          isNumeric: true
         },
         valid: false,
         touched: false
@@ -78,7 +80,8 @@ class ContactData extends Component {
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          isNumeric: true
         },
         valid: false,
         touched: false
@@ -87,11 +90,12 @@ class ContactData extends Component {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'length in cm'
+          placeholder: 'length in feet and inches'
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          isNumeric: true
         },
         valid: false,
         touched: false
@@ -127,16 +131,13 @@ class ContactData extends Component {
       // photoUrls
       // id
     },
-    formIsValid: true,
+    formIsValid: false,
     loading: false
   }
 
   uploadHandler = (event) => {
     // don't send a request automatically - that would reload the page
     event.preventDefault();
-
-console.log('abc')
-
     this.setState({
       loading: true
     });
@@ -147,7 +148,6 @@ console.log('abc')
     for (let formElementIdentifier in this.state.catchForm) {
       formData.set(formElementIdentifier, this.state.catchForm[formElementIdentifier].value) ;
     }
-
 
     axios.post('/api/catches', formData)
       .then(response => {
@@ -165,6 +165,7 @@ console.log('abc')
 
   checkValidity(value, rules) {
     let isValid = true;
+
     if (!rules) {
       return true;
     }
@@ -174,7 +175,7 @@ console.log('abc')
     }
 
     if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid
+      isValid = value.length>= rules.minLength && isValid
     }
 
     if (rules.maxLength) {
@@ -190,6 +191,8 @@ console.log('abc')
       const pattern = /^\d+$/;
       isValid = pattern.test(value) && isValid
     }
+
+    console.log(`isValid for ${value} : ${isValid}`)
 
     return isValid;
   }
@@ -209,10 +212,12 @@ console.log('abc')
       ...updatedCatchForm[inputIdentifier]
     }
     updatedCatchFormElement.value = event.target.value
+    updatedCatchFormElement.valid = this.checkValidity(updatedCatchFormElement.value, updatedCatchFormElement.validation)
     // now we can update the copy, ahead of updating the state
     updatedCatchForm[inputIdentifier] = updatedCatchFormElement
     this.setState({
-      catchForm: updatedCatchForm
+      catchForm: updatedCatchForm,
+      formIsValid: updatedCatchFormElement.valid
     })
   }
 
@@ -226,31 +231,33 @@ console.log('abc')
       });
     }
     let form = (
-      <form onSubmit = { this.uploadHandler } > {
+      <form onSubmit = { this.uploadHandler }> {
         formElementsArray.map(formElement => (
           <Input
             key = { formElement.id }
             elementType = { formElement.config.elementType }
             elementConfig = { formElement.config.elementConfig }
             value = { formElement.config.value }
-            invalid = { !formElement.config.valid } shouldValidate = { formElement.config.validation }
+            // invalid = { !formElement.config.valid } shouldValidate = { formElement.config.validation }
+            invalid = { !formElement.config.valid }
+            // shouldValidate = { formElement.config.validation }
             touched = { formElement.config.touched }
             changed = { (event) => this.inputChangedHandler(event, formElement.id) }
           />
         ))
         }
-        < Button btnType = "Success" disabled = { !this.state.formIsValid } > UPLOAD < /Button>
-      < / form >
+        <Button btnType = "Success" disabled = { !this.state.formIsValid }> UPLOAD </Button>
+      </ form>
     );
     if (this.state.loading) {
-      form = < Spinner / > ;
+      form = <Spinner /> ;
     }
     return (
-      < div className = { classes.ContactData } >
-        < h4 > Upload your Catch Data < /h4> { form }
-      < /div>
+      <div className = { classes.ContactData }>
+        <h4> Upload your Catch Data </h4> { form }
+      </div>
   );
 }
 }
 
-export default ContactData;
+export default CatchData;
