@@ -85,9 +85,15 @@ class App extends Component {
         </div>
 
     return (
+      <UploadCatch />
+
+    return (
     <div className = "App">
       <h1> Hi </h1>
-      <UploadCatch />
+      <div>
+        <button onClick = { this.toggleNavigationCardsHandler }> Show or hide cards </button>
+      </div>
+      {cards}
     </div>
   )}
   // : JSX provides a nicer coding approach
