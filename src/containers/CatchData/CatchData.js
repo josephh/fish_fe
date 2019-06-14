@@ -4,19 +4,20 @@ import React, {
 
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
-// import classes from './CatchData.css';
+import './CatchData.css';
 import axios from '../../axios-catches';
 import Input from '../../components/UI/Input/Input';
 
-const style = {
-      margin: '20px auto',
-      width: '80%',
-      'text-align': 'center',
-      'box-shadow': '0 2px 3px #ccc',
-      border: '1px solid #eee',
-      padding: '10px',
-      'box-sizing': 'border-box'
-  }
+// const style = {
+//     'background-color': 'green',
+//     margin: '20px auto',
+//     width: '80%',
+//     'text-align': 'center',
+//     'box-shadow': '0 2px 3px #ccc',
+//     border: '1px solid #eee',
+//     padding: '10px',
+//     'box-sizing': 'border-box'
+// }
 
 class CatchData extends Component {
   state = {
@@ -259,11 +260,13 @@ class CatchData extends Component {
         <Button btnType = "Success" disabled = { !this.state.formIsValid }> UPLOAD </Button>
       </ form>
     );
+    // if(!this.state.formIsValid) style.backgroundColor = 'red'
     if (this.state.loading) {
       form = <Spinner /> ;
     }
+
     return (
-      <div style={style}>
+      <div>
         <h4> Upload your Catch Data </h4> { form }
       </div>
   );
