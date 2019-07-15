@@ -1,9 +1,124 @@
 /* Global styles - not scoped to a component! */
-.App {
-  text-align: center;
+@font-face {
+   font-family: 'Journal';
+   font-style: normal;
+   font-weight: 400;
+   src: url('assets/fonts/journal.ttf');
+}
+
+:root {
+  --page-bg-color: yellow;
+  --card-bg-color: cyan;
+  --warning-bg-color: red;
+  --catch-bg-color: green;
+  --h1-font-size: 36px;
+  --h2-font-size: 28px;
+  --h3-font-size: 20px;
+  --h4-font-size: 18px;
+  --h5-font-size: 16px;
+  --h6-font-size: 14px;
+  --box-with-text-padding: 10px;
+  --catch-min-width: 300px;
+  --catch-min-height: 150px;
+  --form-max-width: 300px;
+  --box-top-bottom-padding: 5px;
+  --box-left-right-padding: 5px;
+  background: var(--page-bg-color);
+  font-family: 'Journal';
+}
+
+header {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: red;
+  font-size: var(--h1-font-size);
+  margin-top: var(--box-top-bottom-padding);
+  margin-bottom: var(--box-top-bottom-padding);
+}
+
+h3 {
+  font-size: var(--h3-font-size);
 }
 
 .cards {
   display: flex;
-  flex-direction: row;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.card {
+  border-radius: 5px;
+  border-style: solid;
+  border-color: blue;
+  background: var(--card-bg-color);
+  padding: var(--box-with-text-padding);
+  margin: var(--box-top-bottom-padding) var(--box-left-right-padding);
+}
+
+.login {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.warning {
+  border-radius: 5px;
+  border-style: solid;
+  border-color: blue;
+  background: var(--warning-bg-color);
+  padding: var(--box-with-text-padding);
+}
+
+.catches {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.catch {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-image:
+    linear-gradient(to top, rgba(255,255,255,0.5), rgba(0,0,255,0.5)),
+    url("assets/images/pike.jpeg");
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  min-width: var(--catch-min-width);
+  min-height: var(--catch-min-height);
+  border-radius: 5px;
+  border-style: solid;
+  border-color: green;
+  padding: var(--box-with-text-padding);
+  margin: var(--box-top-bottom-padding) var(--box-left-right-padding);
+}
+
+.store-catch {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  margin-top: var(--box-top-bottom-padding);
+  margin-bottom: var(--box-top-bottom-padding);
+}
+
+.store-catch-form {
+  border-radius: 5px;
+  border-style: solid;
+  border-color: red;
+  background: var(--catch-bg-color);
+  padding: var(--box-with-text-padding);
+  min-width: var(--form-max-width);
+  display: flex;
+  flex-flow: column;
+}
+
+.store-catch-form-weight {
+    display: flex;
+    flex-flow: row;
 }
