@@ -7,6 +7,7 @@ it.
 */
 import React, {Component} from 'react';
 import './App.css';
+import CatchCheckout from './containers/CatchCheckout/CatchCheckout';
 
 class App extends Component {
   constructor(props) {
@@ -159,7 +160,7 @@ class App extends Component {
         </section>
         <section className="store-catch">
           <form onSubmit={this.handleSubmit} className="store-catch-form">
-            <label for="species">Species
+            <label htmlFor="species">Species
               <datalist id="species-options">
                 <option value="salmon" />
                 <option value="trout" />
@@ -183,21 +184,21 @@ class App extends Component {
               <input type="text" list="weight-options" />
             </label>
             <div id="weight-imperial" className="store-catch-form-weight">
-              <label for="weight-integer">
+              <label htmlFor="weight-integer">
                 <input id="weight-integer" type="number" value={this.state.value} onChange={this.handleChange} />
                 Lb
               </label>
-              <label for="weight-fraction">
+              <label htmlFor="weight-fraction">
                 <input id="weight-fraction" type="number" value={this.state.value} onChange={this.handleChange} />
                 Oz
               </label>
             </div>
             <div id="weight-metric" className="store-catch-form-weight">
-              <label for="weight-integer">
+              <label htmlFor="weight-integer">
                 <input id="weight-integer" type="number" value={this.state.value} onChange={this.handleChange} />
                 G
               </label>
-              <label for="weight-fraction">
+              <label htmlFor="weight-fraction">
                 <input id="weight-fraction" type="number" value={this.state.value} onChange={this.handleChange} />
                 Mg
               </label>
@@ -210,37 +211,39 @@ class App extends Component {
               <input type="text" list="height-options" />
             </label>
             <div id="height-imperial" className="store-catch-form-height">
-              <label for="height-integer">
+              <label htmlFor="height-integer">
                 <input id="height-integer" type="number" value={this.state.value} onChange={this.handleChange} />
                 feet
               </label>
-              <label for="height-fraction">
+              <label htmlFor="height-fraction">
                 <input id="height-fraction" type="number" value={this.state.value} onChange={this.handleChange} />
                 inches
               </label>
             </div>
             <div id="height-metric" className="store-catch-form-height">
-              <label for="height-integer">
+              <label htmlFor="height-integer">
                 <input id="height-integer" type="number" value={this.state.value} onChange={this.handleChange} />
                 cm
               </label>
-              <label for="height-fraction">
+              <label htmlFor="height-fraction">
                 <input id="height-fraction" type="number" value={this.state.value} onChange={this.handleChange} />
                 mm
               </label>
             </div>
-            <label for="image">Choose a profile picture:</label>
+            <label htmlFor="image">Choose a profile picture:</label>
               <input type="file"
                    id="image" name="image"
                    accept="image/png, image/jpeg" />
             <label>
             Notes
-              <textarea>
-                Hello there, this is some text in a text area
+              <textarea value="Hello there, this is some text in a text area" onChange={this.handleChange}>
               </textarea>
             </label>
             <input type="submit" value="Submit" />
           </form>
+        </section>
+        <section>
+          <CatchCheckout />
         </section>
       </div>
      )}
