@@ -7,7 +7,7 @@ import './CatchSummary.css'
 const catchSummary = (props) => {
   console.log('props ? ', props.details)
   return (
-    <div className='.CatchSummary'>
+    <div className='CatchSummary'>
       <h1>Happy to store these catch details?</h1>
       <div style={{width: '300px', height: '300px', margin: 'auto'}}>
         <Catch details={props.details}/>
