@@ -6,8 +6,13 @@ it.
 * Both coding styles below are valid:  1. returning inline JSX, 2. calling React.createElement
 */
 import React, {Component} from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
-import CatchCheckout from './containers/CatchCheckout/CatchCheckout';
+import StoreCatch from './containers/storecatch/StoreCatch';
+import BrowseCatches from './containers/browse/BrowseCatches';
+import Login from './containers/login/Login';
+import NewCatch from './containers/newcatch/NewCatch';
+import Welcome from './containers/storecatch/Welcome';
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +41,12 @@ class App extends Component {
   render = () =>  {
     return (
       <div>
+        <Route path="/" component={Welcome} />
+        <Route path="/login" component={Login} />
+        <Route path="/browse" component={BrowseCatches} />
+        <Route path="/new" component={NewCatch} />
+        <Route path="/store" component={StoreCatch} />
+
         <section className="cards">
           <div className="card">
             <h3>Record a catch</h3>
