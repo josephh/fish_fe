@@ -8,11 +8,11 @@ it.
 import React, {Component} from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
-import StoreCatch from './containers/storecatch/StoreCatch';
+import StoreCatch from './containers/save/StoreCatch';
 import BrowseCatches from './containers/browse/BrowseCatches';
 import Login from './containers/login/Login';
-import NewCatch from './containers/newcatch/NewCatch';
-import Welcome from './containers/storecatch/Welcome';
+import NewCatch from './containers/new/NewCatch';
+import Welcome from './containers/welcome/Welcome';
 
 class App extends Component {
   constructor(props) {
@@ -41,221 +41,11 @@ class App extends Component {
   render = () =>  {
     return (
       <div>
-        <Route path="/" component={Welcome} />
         <Route path="/login" component={Login} />
         <Route path="/browse" component={BrowseCatches} />
         <Route path="/new" component={NewCatch} />
-        <Route path="/store" component={StoreCatch} />
-
-        <section className="cards">
-          <div className="card">
-            <h3>Record a catch</h3>
-          </div>
-          <div className="card">
-            <h3>Browse My Catches</h3>
-          </div>
-          <div className="card">
-            <h3>See What Other Anglers Have Caught</h3>
-          </div>
-        </section>
-        <section className="login">
-          <div className="warning">
-            <h3>You must be logged-in to record a catch</h3>
-          </div>
-        </section>
-        <section className="catches">
-          <div className="catch">
-            <p>Catch 1</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 2</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 3</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 4</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 5</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 6</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 7</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 8</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 9</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 10</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 11</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 12</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 13</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-        </section>
-        <section className="store-catch">
-          <form onSubmit={this.handleSubmit} className="store-catch-form">
-            <label htmlFor="species">Species
-              <datalist id="species-options">
-                <option value="salmon" />
-                <option value="trout" />
-                <option value="grayling" />
-              </datalist>
-              <input id="species" type="text" list="species-options" />
-            </label>
-            <label>Location lat
-              <input id="latitude" type="text" />
-            </label>
-            <label>Location long
-              <input id="longitude" type="text" />
-            </label>
-            <label>Map
-            </label>
-            <label>Weight Units
-              <datalist id="weight-options">
-                <option value="metric" />
-                <option value="imperial" />
-              </datalist>
-              <input type="text" list="weight-options" />
-            </label>
-            <div id="weight-imperial" className="store-catch-form-weight">
-              <label htmlFor="weight-integer">
-                <input id="weight-integer" type="number" value={this.state.value} onChange={this.handleChange} />
-                Lb
-              </label>
-              <label htmlFor="weight-fraction">
-                <input id="weight-fraction" type="number" value={this.state.value} onChange={this.handleChange} />
-                Oz
-              </label>
-            </div>
-            <div id="weight-metric" className="store-catch-form-weight">
-              <label htmlFor="weight-integer">
-                <input id="weight-integer" type="number" value={this.state.value} onChange={this.handleChange} />
-                G
-              </label>
-              <label htmlFor="weight-fraction">
-                <input id="weight-fraction" type="number" value={this.state.value} onChange={this.handleChange} />
-                Mg
-              </label>
-            </div>
-            <label>Height Units
-              <datalist id="height-options">
-                <option value="metric" />
-                <option value="imperial" />
-              </datalist>
-              <input type="text" list="height-options" />
-            </label>
-            <div id="height-imperial" className="store-catch-form-height">
-              <label htmlFor="height-integer">
-                <input id="height-integer" type="number" value={this.state.value} onChange={this.handleChange} />
-                feet
-              </label>
-              <label htmlFor="height-fraction">
-                <input id="height-fraction" type="number" value={this.state.value} onChange={this.handleChange} />
-                inches
-              </label>
-            </div>
-            <div id="height-metric" className="store-catch-form-height">
-              <label htmlFor="height-integer">
-                <input id="height-integer" type="number" value={this.state.value} onChange={this.handleChange} />
-                cm
-              </label>
-              <label htmlFor="height-fraction">
-                <input id="height-fraction" type="number" value={this.state.value} onChange={this.handleChange} />
-                mm
-              </label>
-            </div>
-            <label htmlFor="image">Choose a profile picture:</label>
-              <input type="file"
-                   id="image" name="image"
-                   accept="image/png, image/jpeg" />
-            <label>
-            Notes
-              <textarea value="Hello there, this is some text in a text area" onChange={this.handleChange}>
-              </textarea>
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        </section>
-        <section>
-          <CatchCheckout />
-        </section>
+        <Route path="/save" component={StoreCatch} />
+        <Route path="/" exact component={Welcome} />
       </div>
      )}
   // : JSX provides a nicer coding approach
