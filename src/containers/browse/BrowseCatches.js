@@ -114,7 +114,7 @@ class BrowseCatch extends Component {
             <p>1.5 lb</p>
             <p>18cm</p>
           </div>
-        </section>
+        </section>  
       </div>
     )
   }

@@ -19,7 +19,6 @@ class App extends Component {
     super(props);
     // learn react hooks
     this.state = {value: ''};
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
