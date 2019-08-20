@@ -5,13 +5,12 @@ class NewCatch extends Component {
 
   state = {  }
 
-
   saveCancelled = () => {
-    this.props.history.goBack();
+    this.props.history.replace('/');
   }
 
   saveConfirmed = () => {
-    this.props.history.replace('/save/confirmation'); 
+    this.props.history.replace('/save');
   }
 
   render() {

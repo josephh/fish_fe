@@ -9,6 +9,7 @@ import React, {Component} from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import StoreCatch from './containers/save/StoreCatch';
+import ConfirmCatch from './containers/save/ConfirmCatch';
 import BrowseCatches from './containers/browse/BrowseCatches';
 import Login from './containers/login/Login';
 import NewCatch from './containers/new/NewCatch';
@@ -43,7 +44,8 @@ class App extends Component {
         <Route path="/login" component={Login} />
         <Route path="/browse" component={BrowseCatches} />
         <Route path="/new" component={NewCatch} />
-        <Route path="/save" component={StoreCatch} />
+        <Route path="/save/summary" exact component={ConfirmCatch} />
+        <Route path="/save" exact component={StoreCatch} />
         <Route path="/" exact component={Welcome} />
       </div>
      )}

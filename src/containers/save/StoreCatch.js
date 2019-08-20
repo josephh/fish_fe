@@ -11,11 +11,21 @@ class CatchCheckout extends Component {
     }
   }
 
+  saveCancelledHandler = () => {
+    this.props.history.goBack();
+  }
+
+  saveConfirmedHandler = () => {
+    this.props.history.replace('/save/summary')
+  }
+
   render() {
     return (
-      // this div wraps the entire page
       <div>
-        <CatchSummary details={this.state.details} />
+        <CatchSummary
+          details={this.state.details}
+          saveConfirmed={this.saveConfirmedHandler}
+          saveCancelled={this.saveCancelledHandler}/>
       </div>
     )
   }

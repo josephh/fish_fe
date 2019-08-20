@@ -13,10 +13,10 @@ const catchSummary = (props) => {
         <Catch details={props.details}/>
         <Button
           btnType="Danger"
-          clicked>Cancel</Button>
+          clicked={props.saveCancelled}>Cancel</Button>
         <Button
           btnType="Success"
-          clicked>Ok</Button>
+          clicked={props.saveConfirmed}>Ok</Button>
       </div>
     </div>
   )
