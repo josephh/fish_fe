@@ -22,7 +22,7 @@ class BrowseCatch extends Component {
         <p>Browse Catch container</p>
         <section className="catches">
           {this.state.catches.map( c =>
-            <div className="catch" style={{
+            <div key={c.id} className="catch" style={{
               backgroundImage:  `url(${c.photoUrls[0]})`
             }}>
               <p>{c.species} caught by {c.angler}</p>
