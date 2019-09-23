@@ -1,8 +1,19 @@
 import React, {Component} from 'react';
+import axios from '../../axios-catches.js';
 
 class BrowseCatch extends Component {
 
-  state = {  }
+  state = {
+    catches: [],
+    loading: true
+ }
+
+  componentDidMount() {
+    axios.get('/catches')
+      .then(res => {
+        this.setState({loading: false, catches: res.data.catches })
+      })
+  }
 
   render() {
     return (
@@ -10,111 +21,19 @@ class BrowseCatch extends Component {
       <div>
         <p>Browse Catch container</p>
         <section className="catches">
-          <div className="catch">
-            <p>Catch 1</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 2</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 3</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 4</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 5</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 6</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 7</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 8</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 9</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 10</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 11</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 12</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-          <div className="catch">
-            <p>Catch 13</p>
-            <p>31st December 2018</p>
-            <p>Trout</p>
-            <p>Wiltshire Avon</p>
-            <p>1.5 lb</p>
-            <p>18cm</p>
-          </div>
-        </section>  
+          {this.state.catches.map( c =>
+            <div className="catch" style={{
+              backgroundImage:  `url(${c.photoUrls[0]})`
+            }}>
+              <p>{c.species} caught by {c.angler}</p>
+              <p>31st December 2018</p>
+              <p>{c.species}</p>
+              <p>{c.latitude} : {c.longitude}</p>
+              <p>{c.weight}</p>
+              <p>{c.length}</p>
+            </div>
+          )}
+        </section>
       </div>
     )
   }

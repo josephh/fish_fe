@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom';
+import './Welcome.css';
 
 class Welcome extends Component {
 
@@ -20,8 +22,10 @@ class Welcome extends Component {
       <div>
         <p>Welcome container</p>
         <section className="cards">
-          <div className="card" onClick={ () => this.clickHandler('/new')}>
-            <h3>Record a catch</h3>
+          <div className="card">
+            <ul>
+              <li> <NavLink to="/new"> Record a catch </NavLink> </li>
+            </ul>
           </div>
           <div className="card" onClick={ () => this.clickHandler('/browse-mine')}>
             <h3>Browse My Catches</h3>
